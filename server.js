@@ -1,39 +1,34 @@
 const express = require("express");
-const app = express();
-const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const logger = require("morgan");
+const path = require("path");
 
-const cors = require("cors")
-
-const mongoose = require("mongoose"); 
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb", { useNewUrlParser: true });
-
-app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 
-const User = require("./models/userworkout");
+const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
 
-
-app.post("/submit", ({ body }, res) => {
-  User.create(body)
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness", {
+  useNewUrlParser: true,
 });
 
-app.use(require("./routes/routes.js"));
+// Routes 
+app.use(require("./routes/api.js"));
+
+app.use(require("./routes/Userroute.js"));
 
 
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
+
+
+
+
+
