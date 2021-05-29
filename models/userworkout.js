@@ -2,32 +2,23 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    trim: true,
-    required: "Username is Required"
+const UserworkoutSchema = new Schema({
+  Date: Date,
+
+  totalDuration: {
+    type: Number,
   },
 
-  password: {
-    type: String,
-    trim: true,
-    required: "Password is Required",
-    validate: [({ length }) => length >= 6, "Password should be longer."]
-  },
+  numexercises: {
 
-  email: {
-    type: String,
-    unique: true,
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
-  },
-
-  userCreated: {
-    type: Date,
-    default: Date.now
+    type: Schema.Types.ObjectId,
   }
+
+
+
+
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("userworkout", UserworkoutSchema);
 
-module.exports = User;
+module.exports = userworkout;
