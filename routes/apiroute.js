@@ -12,15 +12,6 @@ router.post("/api/userworkout", ({ body }, res) => {
     });
 });
 
-router.post("/api/transaction/bulk", ({ body }, res) => {
-  Transaction.insertMany(body)
-    .then(dbTransaction => {
-      res.json(dbTransaction);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
 
 router.get("/api/userworkout", (req, res) => {
     userworkout.find({})

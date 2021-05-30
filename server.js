@@ -20,11 +20,14 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness", {
 });
 
 // Routes 
-app.use(require("./routes/api.js"));
+app.use(require("./routes/apiroute.js"));
 
-app.use(require("./routes/Userroute.js"));
+app.use(require("./routes/userworkoutroute.js"));
 
-
+app.get('/', function(req, res){
+    console.log("Root Route")
+    res.json({ message: "hello world" });
+});
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
