@@ -8,7 +8,10 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-require('dotenv').config();
+const exercisesRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
+
+require('dotenv').config({ path:'ENV_FILENAME'});
 
 
 
@@ -21,11 +24,11 @@ app.use(express.json());
 const uri = process.env.ATLAS_URI;
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
-    );
-    const connection = mongoose.connection;
-    connection.once('open', () => {
-      console.log("MongoDB database connection established successfully");
-    })
+);
+const connection = mongoose.connection;
+connection.once('open', () => {
+console.log("MongoDB database connection established successfully");
+})
 
 app.use(express.static("public"));
 
@@ -33,9 +36,9 @@ app.use(logger("dev"));
 
 app.use(cors());
 
-app.use(require("./routes/apiroute.js"));
 
-app.use(require("./routes/userworkoutroute.js"));
+app.use('/exercises', exercisesRouter);
+app.use('/users', usersRouter);
 
 app.get('/', function(req, res){
     console.log("Root Route")

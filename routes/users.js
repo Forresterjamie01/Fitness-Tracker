@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const userworkout = require("../models/userworkout.js");
+const userworkout = require("../models/users.js");
 
 //get routes connecting the user to the various pages 
 router.get("/api/userworkout", (req, res) => {
