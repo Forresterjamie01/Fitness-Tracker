@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: {
+  //user model for username it must be unique and be at least 3 characters
+    username: {
       type: String,
       required: true,
       unique: true,

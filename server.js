@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
-const uri = process.env.ATLAS_URI;
+const uri = process.env.ATLAS_URI || "mongodb://localhost/FitnessTracker";
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 );
