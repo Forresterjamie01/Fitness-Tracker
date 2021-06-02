@@ -17,10 +17,18 @@ app.put("/api/workouts/:id",function(req,res){
     })
 })
 
-app.put("/api/workouts",function(req,res){
-    db.find()
+app.post("/api/workouts",function(req,res){
+    db.create(req.body)
     .then(function(data){
         console.log("POST route",data)
+        res.json(data)
+    })
+})
+
+app.get("/api/workouts/range",function(req,res){
+    db.find().limit().sort()
+    .then(function(data){
+        console.log("GET route",data)
         res.json(data)
     })
 })
