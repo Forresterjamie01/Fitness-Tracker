@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-const exercisesRouter = require('./routes/exercises');
+const exercisesRouter = require('./routes/htmlRoutes');
 const usersRouter = require('./routes/users');
 
 require('dotenv').config({ path:'ENV_FILENAME'});
@@ -37,13 +37,10 @@ app.use(logger("dev"));
 app.use(cors());
 
 
-app.use('/exercises', exercisesRouter);
-app.use('/users', usersRouter);
+app.use('/routes', exercisesRouter);
+app.use('/routes', usersRouter);
 
-app.get('/', function(req, res){
-    console.log("Root Route")
-    res.json({ message: "hello world" });
-});
+
 
 
 app.listen(PORT, () => {
