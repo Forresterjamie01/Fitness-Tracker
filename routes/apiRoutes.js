@@ -32,3 +32,6 @@ app.get("/api/workouts/range",function(req,res){
         res.json(data)
     })
 })
+
+
+module.exports = app
