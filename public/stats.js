@@ -20,6 +20,7 @@ function generatePalette() {
 
   return arr;
 }
+console.log("statsjs");
 
 function populateChart(data) {
   console.log("Workout Ranges", data)
