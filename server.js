@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const exercisesRouter = require('./routes/htmlRoutes');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/apiroutes');
 
 require('dotenv').config({ path:'ENV_FILENAME'});
 
@@ -25,10 +25,10 @@ const uri = process.env.ATLAS_URI || "mongodb://localhost/FitnessTracker";
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 );
-const connection = mongoose.connection;
-connection.once('open', () => {
-console.log("MongoDB database connection established successfully");
-})
+// const connection = mongoose.connection;
+// connection.once('open', () => {
+// console.log("MongoDB database connection established successfully");
+// })
 
 app.use(express.static("public"));
 
@@ -37,8 +37,8 @@ app.use(logger("dev"));
 app.use(cors());
 
 
-app.use('/routes', exercisesRouter);
-app.use('/routes', usersRouter);
+app.use( exercisesRouter);
+app.use(usersRouter);
 
 
 
